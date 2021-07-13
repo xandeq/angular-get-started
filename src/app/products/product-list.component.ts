@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { IProduct } from './product';
 
 @Component({
   selector: 'pm-products',
   templateUrl: './product-list-component.html',
+  styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
   pageTitle: string = 'Product List';
-  products: any[] = [
+  imageWidth: number = 50;
+  imageMargin: number = 2;
+  showImage: boolean = false;
+  listFilter: string = 'cart';
+  ngOnInit(): void {
+    console.log('In OnInit');
+  }
+  products: IProduct[] = [
     {
       productId: 1,
       productName: 'Leaf Rake',
@@ -15,7 +25,7 @@ export class ProductListComponent {
       description: 'Leaf rake with 48-inch wooden handle.',
       price: 19.95,
       starRating: 3.2,
-      imageUrl: 'assets/images/leaf_rake.png',
+      imageUrl: 'assets/1.jpg',
     },
     {
       productId: 2,
@@ -25,7 +35,7 @@ export class ProductListComponent {
       description: '15 gallon capacity rolling garden cart',
       price: 32.99,
       starRating: 4.2,
-      imageUrl: 'assets/images/garden_cart.png',
+      imageUrl: 'assets/2.jpg',
     },
     {
       productId: 5,
@@ -35,7 +45,7 @@ export class ProductListComponent {
       description: 'Curved claw steel hammer',
       price: 8.9,
       starRating: 4.8,
-      imageUrl: 'assets/images/hammer.png',
+      imageUrl: 'assets/3.jpg',
     },
     {
       productId: 8,
@@ -45,7 +55,7 @@ export class ProductListComponent {
       description: '15-inch steel blade hand saw',
       price: 11.55,
       starRating: 3.7,
-      imageUrl: 'assets/images/saw.png',
+      imageUrl: 'assets/1.jpg',
     },
     {
       productId: 10,
@@ -55,8 +65,13 @@ export class ProductListComponent {
       description: 'Standard two-button video game controller',
       price: 35.95,
       starRating: 4.6,
-      imageUrl: 'assets/images/xbox-controller.png',
+      imageUrl: 'assets/1.jpg',
     },
   ];
+
+  toggleImage(): void {
+    this.showImage = !this.showImage;
+  }
+
   constructor() {}
 }
