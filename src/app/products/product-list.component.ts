@@ -12,10 +12,20 @@ export class ProductListComponent implements OnInit {
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
-  listFilter: string = 'cart';
-  ngOnInit(): void {
-    console.log('In OnInit');
+
+  private _listFilter: string = '';
+  get listFilter(): string {
+    return this._listFilter;
   }
+  set listFilter(value: string) {
+    this._listFilter = value;
+    console.log(value);
+  }
+
+  ngOnInit(): void {
+    this._listFilter = 'cart';
+  }
+
   products: IProduct[] = [
     {
       productId: 1,
