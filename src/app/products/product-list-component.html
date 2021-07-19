@@ -46,7 +46,8 @@
               {{product.price | currency: 'BRL':'symbol':'1.2-2' | uppercase}}
             </td>
             <td>
-              <pm-star [rating]="product.starRating" (ratingClicked)="onRatingClicked($event)">
+              <pm-star [rating]="product.starRating" 
+              (ratingClicked)="onRatingClicked($event)">
               </pm-star>
             </td>
           </tr>
