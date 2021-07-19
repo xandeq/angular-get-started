@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
-import { ProductListComponent } from './products/product-list.component';
-
 @Component({
   selector: 'app-root',
-  //templateUrl: './app.component.html',
-  template: `<div class="row">
-    <h1>Titulo</h1>
-    <pm-products></pm-products>
-  </div>`,
+  template: ` <nav class="navbar navbar-expand navbar-light bg-light">
+    <a class="navbar-brand">{{ pageTitle }}</a>
+    <ul class="nav navbar-nav">
+      <li><a class="nav-link" routerLink="/welcome">Home</a></li>
+      <li>
+        <a class="nav-link" routerLink="/products">Products List</a>
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>`,
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title: string = 'angular-get-started';
+  pageTitle: string = '';
 }
