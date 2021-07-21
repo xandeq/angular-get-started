@@ -34,17 +34,19 @@
               <img
                 *ngIf="showImage"
                 [src]="product.imageUrl"
-                [title]="product.productName | uppercase"
+                [title]="product.productName"
                 [style.width.px]="imageWidth"
                 [style.margin.px]="imageMargin"
               />
             </td>
-            <td>{{product.productName}}</td>
-            <td>{{product.productCode | lowercase | convertToSpaces:'-' }}</td>
-            <td>{{product.releaseDate}}</td>
             <td>
-              {{product.price | currency: 'BRL':'symbol':'1.2-2' | uppercase}}
+              <a [routerLink]="['/products', product.productId]">
+                {{ product.productName }}
+              </a>
             </td>
+            <td>{{ product.productCode | lowercase | convertToSpaces:'-' }}</td>
+            <td>{{ product.releaseDate }}</td>
+            <td>{{ product.price | currency:'USD':'symbol':'1.2-2'}}</td>
             <td>
               <pm-star
                 [rating]="product.starRating"
@@ -57,4 +59,7 @@
       </table>
     </div>
   </div>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage }}
 </div>

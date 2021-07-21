@@ -1,3 +1,4 @@
+import { ProductDetailGuard } from './products/product-detail.guard';
 import { RouterModule } from '@angular/router';
 import { StarComponent } from './shared/star.component';
 import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
@@ -28,7 +29,11 @@ import { WelcomeComponent } from './home/welcome.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', component: ProductDetailsComponent },
+      {
+        path: 'products/:id',
+        canActivate: [ProductDetailGuard],
+        component: ProductDetailsComponent,
+      },
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' },

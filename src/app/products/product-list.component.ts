@@ -1,27 +1,19 @@
-import { ProductService } from './product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { IProduct } from './product';
 import { Subscription } from 'rxjs';
+import { IProduct } from './product';
+import { ProductService } from './product.service';
 
 @Component({
-  selector: 'pm-products',
   templateUrl: './product-list-component.html',
   styleUrls: ['./product-list.component.css'],
-  //providers: [ProductService]
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   pageTitle = 'Product List';
   imageWidth = 50;
   imageMargin = 2;
   showImage = false;
-  errorMessage: string = '';
-  products: IProduct[] = [];
+  errorMessage = '';
   sub!: Subscription;
-  private _productService;
-  constructor(private productService: ProductService) {
-    this._productService = productService;
-  }
 
   private _listFilter = '';
   get listFilter(): string {
@@ -33,6 +25,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   filteredProducts: IProduct[] = [];
+  products: IProduct[] = [];
+
+  constructor(private productService: ProductService) {}
 
   performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
@@ -54,6 +49,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
       error: (err) => (this.errorMessage = err),
     });
   }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
