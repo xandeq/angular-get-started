@@ -12,32 +12,20 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './products/product-details.component';
 import { WelcomeComponent } from './home/welcome.component';
+import { ProductModule } from './products/product.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductListComponent,
-    ConvertToSpacesPipe,
-    StarComponent,
-    ProductDetailsComponent,
-    WelcomeComponent,
-  ],
+  declarations: [AppComponent, WelcomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: 'products', component: ProductListComponent },
-      {
-        path: 'products/:id',
-        canActivate: [ProductDetailGuard],
-        component: ProductDetailsComponent,
-      },
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
     ]),
+    ProductModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
